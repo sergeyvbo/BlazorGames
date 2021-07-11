@@ -1,0 +1,73 @@
+﻿body {
+    display: flex;
+}
+
+.game-container {
+    width: 500px;
+    height: 730px;
+    position: absolute;
+    left: 80px;
+}
+
+.border-left {
+    width: 80px;
+    height: 790px;
+    position: absolute;
+    background-color: white;
+    z-index: +2;
+}
+
+.border-right{
+    left:580px;
+    width: 80px;
+    height: 790px;
+    position: absolute;
+    background-color: white;
+    z-index: +2;
+}
+
+.border-top {
+    width: 660px;
+    height: 60px;
+    position: absolute;
+    background-color: white;
+    z-index: +2;
+    top: -60px;
+    left: -80px;
+}
+
+
+.sky {
+    background-image: url('../images/games/flappyBird/sky.png');
+    width: 500px;
+    height: 580px;
+    position: absolute;
+}
+
+.ground {
+    background-image: url('../images/games/flappyBird/ground.png');
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    top: 580px;
+    z-index: +1;
+}
+
+.bird {
+    background-image: url('../images/games/flappyBird/bird.png');
+    width: 60px;
+    height: 45px;
+    left: 220px;
+    position: absolute;
+}
+
+.pipe {
+    background-image: url('../images/games/flappyBird/pipe.png');
+    width: 60px;
+    height: 300px;
+    position: absolute;
+}
+
+.pipe.top {
+    transform: rotate(180deg);
+}
