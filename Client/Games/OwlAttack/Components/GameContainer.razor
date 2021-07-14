@@ -1,0 +1,39 @@
+﻿@using BlazorGames.Client.Games.OwlAttack.Models
+
+<div class="oa-game-container" tabindex="0" @onclick="@_gameManager.Start" @onkeydown="HandleKeyDown">
+	<div class="oa-sky">
+		<Owl Model="_gameManager.OwlModel"/>
+		<Player Model="_gameManager.PlayerModel"/>
+	</div>
+	<div class="oa-ground">
+	
+	</div>
+	
+</div>
+
+@code {
+	GameManager _gameManager;
+
+	protected override void OnInitialized()
+	{
+		_gameManager = new();
+		_gameManager.FrameUpdated += (_, _) => StateHasChanged();
+	}
+
+	void HandleKeyDown(KeyboardEventArgs e)
+	{
+		if (e.Key == "ArrowLeft")
+		{
+			_gameManager.PlayerModel.Velocity = Math.Max(-PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity -1);
+		}
+		if (e.Key == "ArrowRight")
+		{
+			_gameManager.PlayerModel.Velocity = Math.Min(PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity +1);
+		}
+		if (e.Key == "ArrowDown" || e.Key == "ArrowUp" )
+		{
+			_gameManager.PlayerModel.Velocity = 0;
+		}
+
+	}
+}

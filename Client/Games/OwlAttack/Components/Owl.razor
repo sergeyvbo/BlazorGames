@@ -1,0 +1,8 @@
+﻿@using BlazorGames.Client.Games.OwlAttack.Models
+<div class="oa-owl" style="@_owlCss"></div>
+
+@code {
+
+	[Parameter] public OwlModel Model {get; set;}
+	string _owlCss => $"left: {Model.DistanceFromLeft}px; bottom: {Model.Altitude}px;";
+}

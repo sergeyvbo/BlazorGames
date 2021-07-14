@@ -1,0 +1,11 @@
+﻿@using BlazorGames.Client.Games.OwlAttack.Models
+
+<div class="oa-player" style="@_playerCss"></div>
+
+@code {
+
+	[Parameter] public PlayerModel Model {get; set; }
+
+	string _playerCss => $"left: {Model.DistanceFromLeft}px;";
+
+}

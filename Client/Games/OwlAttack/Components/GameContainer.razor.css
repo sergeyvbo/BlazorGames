@@ -1,0 +1,21 @@
+﻿.oa-game-container {
+    background-color: skyblue;
+    width: 600px;
+    height: 600px;
+    position: absolute;
+}
+
+.oa-sky {
+    width: 600px;
+    height: 500px;
+    background-color: deepskyblue;
+    position: absolute;
+}
+
+.oa-ground {
+    width: 600px;
+    height: 100px;
+    background-color: forestgreen;
+    position: absolute;
+    top: 500px;
+}
