@@ -6,6 +6,6 @@
 
 	[Parameter] public PlayerModel Model {get; set; }
 
-	string _playerCss => $"left: {Model.DistanceFromLeft}px;";
+	string _playerCss => $"left: {Model.DistanceFromLeft}px; bottom: {Model.Altitude}px";
 
 }
