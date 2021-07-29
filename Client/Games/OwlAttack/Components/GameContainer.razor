@@ -4,15 +4,20 @@
 	<div class="oa-sky">
 		<Owl Model="_gameManager.OwlModel"/>
 		<Player Model="_gameManager.PlayerModel"/>
+		<Tree/>
 	</div>
 	<div class="oa-ground">
-	
+		<text>Score: @_gameManager.PlayerModel.Score.ToString()</text>
+		<text>Carry: @_gameManager.PlayerModel.Carry.ToString()</text>
+		<text>State: @_gameManager.PlayerModel.State.ToString()</text>
 	</div>
 	
 </div>
 
 @code {
 	GameManager _gameManager;
+
+	
 
 	protected override void OnInitialized()
 	{
@@ -24,11 +29,11 @@
 	{
 		if (e.Key == "ArrowLeft")
 		{
-			_gameManager.PlayerModel.Velocity = Math.Max(-PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity -1);
+			_gameManager.PlayerModel.Velocity = Math.Max(-_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity -1);
 		}
 		if (e.Key == "ArrowRight")
 		{
-			_gameManager.PlayerModel.Velocity = Math.Min(PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity +1);
+			_gameManager.PlayerModel.Velocity = Math.Min(_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity +1);
 		}
 		if (e.Key == "ArrowDown" || e.Key == "ArrowUp" )
 		{

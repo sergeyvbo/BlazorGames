@@ -1,5 +1,5 @@
 ﻿.oa-game-container {
-    background-color: skyblue;
+    background-image: url("../../../wwwroot/images/games/owlAttack/background.png");
     width: 600px;
     height: 600px;
     position: absolute;
@@ -18,4 +18,5 @@
     background-color: forestgreen;
     position: absolute;
     top: 500px;
+    z-index: +2;
 }

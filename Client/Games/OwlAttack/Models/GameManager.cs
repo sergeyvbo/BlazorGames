@@ -16,6 +16,11 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
 
         public GameManager()
         {
+            Init();
+        }
+
+        public void Init()
+        {
             OwlModel = new(this);
             PlayerModel = new();
 
@@ -35,6 +40,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
         public void Stop()
         {
             _timer.Stop();
+            Init();
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection.Metadata.Ecma335;
 using System.Timers;
 
 namespace BlazorGames.Client.Games.OwlAttack.Models
@@ -139,13 +138,12 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 if (DistanceFromLeft < -50 || Altitude > -50)
                 {
                     GameManager.Stop();
-                    GameManager = new();
                     return;
                 }
 
                 VerticalSpeed = -MaxVelocity;
                 HorizontalSpeed = MaxVelocity;
-                GameManager.PlayerModel.CanMove = false;
+                GameManager.PlayerModel.State = PlayerState.Caught;
                 GameManager.PlayerModel.DistanceFromLeft = DistanceFromLeft;
                 GameManager.PlayerModel.Altitude = Altitude;
             }
