@@ -1,7 +1,45 @@
 ﻿.oa-player {
-    background-color: maroon;
+    background-image: url('../../../images/games/owlAttack/oa_player.png');
     width: 50px;
     height: 50px;
     position: relative;
     z-index: +10;
 }
+
+
+.oa-walk {
+    background: url('../../../images/games/owlAttack/oa_walk.png') left center;
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: +10;
+    animation: play 0.5s steps(4) infinite;  
+}
+
+.oa-carry {
+    background: url('../../../images/games/owlAttack/oa_carry.png') left center;
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: +10;
+    animation: play 0.5s steps(4) infinite;
+}
+
+.oa-chop {
+    background: url('../../../images/games/owlAttack/oa_chop.png') left center;
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: +10;
+    animation: play 0.5s steps(4) infinite;
+}
+
+
+.oa-flip {
+    transform: scaleX(-1);
+}
+
+@keyframes play {
+    100% {background-position: -192px;}
+}
+

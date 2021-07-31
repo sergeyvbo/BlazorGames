@@ -1,11 +1,48 @@
 ﻿@using BlazorGames.Client.Games.OwlAttack.Models
 
-<div class="oa-player" style="@_playerCss"></div>
+<div class="@GetAnimationClass()" style="@_playerPos"></div>
 
 @code {
 
 	[Parameter] public PlayerModel Model {get; set; }
 
-	string _playerCss => $"left: {Model.DistanceFromLeft}px; bottom: {Model.Altitude}px";
+	string _playerPos => $"left: {Model.DistanceFromLeft}px; bottom: {Model.Altitude}px";
+
+	string GetAnimationClass()
+	{
+		if (Model.State == PlayerState.Empty)
+		{
+			if (Model.Velocity == 0)
+			{
+				return "oa-player";
+			}
+			if (Model.Velocity > 0)
+			{
+				return "oa-walk";	
+			}
+			return "oa-walk oa-flip";			
+		}
+
+		if (Model.State == PlayerState.Carry)
+		{
+			if (Model.Velocity == 0)
+			{
+				return "oa-player";
+			}
+			if (Model.Velocity > 0)
+			{
+				return "oa-carry";	
+			}
+			return "oa-carry oa-flip";			
+		}
+
+		if (Model.State == PlayerState.Chop)
+		{
+			return "oa-chop";
+		}
+
+		return "oa-player";
+		
+	}
 
 }

@@ -19,6 +19,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
             get => _state;
             set
             {
+                CanMove = true;
                 _state = value;
                 if (_state == PlayerState.Empty)
                 {
@@ -27,6 +28,10 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 if (_state == PlayerState.Carry)
                 {
                     MaxVelocity = 2;
+                }
+                if (_state == PlayerState.Caught)
+                {
+                    CanMove = false;
                 }
             }
         }
@@ -40,7 +45,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
         {
             State = PlayerState.Empty;
             MaxVelocity = 3;
-            Velocity = 2;
+            Velocity = 0;
             DistanceFromLeft = 250;
             Altitude = -400;
             CanMove = true;
