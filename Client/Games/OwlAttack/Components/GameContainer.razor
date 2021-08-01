@@ -1,4 +1,5 @@
 ﻿@using BlazorGames.Client.Games.OwlAttack.Models
+@inject GameManager _gameManager
 
 <div class="oa-game-container" tabindex="0" @onclick="@_gameManager.Start" @onkeydown="HandleKeyDown">
 	<div class="oa-sky">
@@ -10,19 +11,15 @@
 	<div class="oa-text">
 		<text>Score: @_gameManager.PlayerModel.Score.ToString()</text>
 		<text>Carry: @_gameManager.PlayerModel.Carry.ToString()</text>
-		<text>State: @_gameManager.PlayerModel.State.ToString()</text>
+		<p>High score: @_gameManager.HighScore </p>
 	</div>
 	
 </div>
 
 @code {
-	GameManager _gameManager;
-
 	
-
 	protected override void OnInitialized()
 	{
-		_gameManager = new();
 		_gameManager.FrameUpdated += (_, _) => StateHasChanged();
 	}
 

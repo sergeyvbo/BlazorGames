@@ -9,6 +9,7 @@
 	string GetAnimationClass() {
 		string result = "oa-owl";
 		if (Model.HorizontalSpeed > 0) result += " oa-flip";
+		if (Model.State == OwlState.Await) result += " oa-hidden";
 		return result;
 	}
 

@@ -16,7 +16,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
 
         private int _pursueStart = 0;
 
-        private OwlState _state;
+        public OwlState State;
 
         public int Altitude { get; private set; }
         public int DistanceFromLeft { get; private set; }
@@ -26,9 +26,8 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
 
         private Timer _timer;
 
-        public OwlModel(GameManager manager)
+        public OwlModel()
         {
-            GameManager = manager;
             Init();
         }
 
@@ -41,7 +40,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
             _timer = new Timer();
             _timer.Interval = 5000;
             _timer.Elapsed += TimerElapsed;
-            _state = OwlState.Approach;
+            State = OwlState.Approach;
         }
 
         internal void Move()
@@ -54,17 +53,17 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
 
         private void UpdateState()
         {
-            if (_state == OwlState.Approach)
+            if (State == OwlState.Approach)
             {
                 if (HasCaught())
                 {
-                    _state = OwlState.CarryOut;
+                    State = OwlState.CarryOut;
                     return;
                 }
 
                 if (Altitude <= PURSUE_ALTITUDE)
                 {
-                    _state = OwlState.Pursue;
+                    State = OwlState.Pursue;
                     _pursueStart = DistanceFromLeft;
                     return;
                 }
@@ -87,17 +86,17 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                                 
             }
 
-            if (_state == OwlState.Pursue)
+            if (State == OwlState.Pursue)
             {
                 if (HasCaught())
                 {
-                    _state = OwlState.CarryOut;
+                    State = OwlState.CarryOut;
                     return;
                 }
 
                 if ((_pursueStart - DistanceFromLeft) > PURSUE_DISTANCE)
                 {
-                    _state = OwlState.Retreat;
+                    State = OwlState.Retreat;
                     return;
                 }
 
@@ -113,11 +112,11 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 }
             }
 
-            if (_state == OwlState.Retreat)
+            if (State == OwlState.Retreat)
             {
                 if (DistanceFromLeft < -50 || Altitude > -50)
                 {
-                    _state = OwlState.Return;
+                    State = OwlState.Return;
                     return;
                 }
 
@@ -125,18 +124,19 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 HorizontalSpeed = -2;
             }
 
-            if (_state == OwlState.Return)
+            if (State == OwlState.Return)
             {
                 VerticalSpeed = 0;
                 HorizontalSpeed = 0;
-                _state = OwlState.Await;
+                State = OwlState.Await;
                 _timer.Start();
             }
 
-            if (_state == OwlState.CarryOut)
+            if (State == OwlState.CarryOut)
             {
                 if (DistanceFromLeft < -50 || Altitude > -50)
                 {
+                    GameManager.SetHighScore();
                     GameManager.Stop();
                     return;
                 }
@@ -169,7 +169,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
 
     }
 
-    enum OwlState
+    public enum OwlState
     {
         Approach,
         Pursue,

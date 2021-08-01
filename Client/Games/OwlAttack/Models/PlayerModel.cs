@@ -112,6 +112,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 {
                     Unload();
                     State = PlayerState.Empty;
+                    Velocity = 0;
                 }
             }
                       

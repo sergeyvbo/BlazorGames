@@ -11,6 +11,10 @@
     transform: scaleX(-1);
 }
 
+.oa-hidden {
+    opacity: 0;
+}
+
 @keyframes play {
     100% {
         background-position: -192px;
