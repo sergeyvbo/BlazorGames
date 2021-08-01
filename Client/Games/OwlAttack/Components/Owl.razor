@@ -1,8 +1,15 @@
 ﻿@using BlazorGames.Client.Games.OwlAttack.Models
-<div class="oa-owl" style="@_owlCss"></div>
+<div class="@GetAnimationClass()" style="@_owlCss"></div>
 
 @code {
 
 	[Parameter] public OwlModel Model {get; set;}
 	string _owlCss => $"left: {Model.DistanceFromLeft}px; bottom: {Model.Altitude}px;";
+
+	string GetAnimationClass() {
+		string result = "oa-owl";
+		if (Model.HorizontalSpeed > 0) result += " oa-flip";
+		return result;
+	}
+
 }

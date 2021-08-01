@@ -1,5 +1,5 @@
 ﻿.oa-game-container {
-    background-image: url('../../../images/games/owlAttack/oa_bg.png');
+    background-image: url('../../../images/games/owlAttack/oa_bg3.png');
     width: 600px;
     height: 600px;
     position: absolute;
@@ -12,11 +12,12 @@
 }
 
 .oa-ground {
+    background-image: url('../../../images/games/owlAttack/oa_fg.png');
     width: 600px;
-    height: 100px;
+    height: 120px;
     position: absolute;
-    top: 500px;
-    z-index: +2;
+    top: 470px;
+    z-index: +20;
 }
 
 .oa-text {
@@ -26,5 +27,5 @@
     top: 550px;
     color: wheat;
     text-shadow: #ffd800 0px 0px 1px;
-    z-index: +3;
+    z-index: +30;
 }

@@ -144,7 +144,7 @@ namespace BlazorGames.Client.Games.OwlAttack.Models
                 VerticalSpeed = -MaxVelocity;
                 HorizontalSpeed = MaxVelocity;
                 GameManager.PlayerModel.State = PlayerState.Caught;
-                GameManager.PlayerModel.DistanceFromLeft = DistanceFromLeft - 5;
+                GameManager.PlayerModel.DistanceFromLeft = DistanceFromLeft + 10;
                 GameManager.PlayerModel.Altitude = Altitude + 10;
             }
 
