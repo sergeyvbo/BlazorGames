@@ -1,7 +1,7 @@
 ﻿@using BlazorGames.Client.Games.OwlAttack.Models
 @inject GameManager _gameManager
 
-<div class="oa-game-container" tabindex="0" @onclick="@_gameManager.Start" @onkeydown="HandleKeyDown">
+<div class="oa-game-container" tabindex="0" @onclick="@_gameManager.Start" @onkeydown="HandleKeyDown" @ontouchstart = "HandleTouchStart">
 	<div class="oa-sky">
 		<Owl Model="_gameManager.OwlModel"/>
 		<Player Model="_gameManager.PlayerModel"/>
@@ -17,7 +17,7 @@
 </div>
 
 @code {
-	
+
 	protected override void OnInitialized()
 	{
 		_gameManager.FrameUpdated += (_, _) => StateHasChanged();
@@ -25,18 +25,42 @@
 
 	void HandleKeyDown(KeyboardEventArgs e)
 	{
-		if (e.Key == "ArrowLeft")
+		switch (e.Key)
 		{
-			_gameManager.PlayerModel.Velocity = Math.Max(-_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity -1);
+			case "ArrowLeft":
+				_gameManager.PlayerModel.Velocity = Math.Max(-_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity - 1);
+				break;
+			case "ArrowRight":
+				_gameManager.PlayerModel.Velocity = Math.Min(_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity + 1);
+				break;
+			case "ArrowDown":
+			case "ArrowUp":
+				_gameManager.PlayerModel.Velocity = 0;
+				break;
+			default:
+				return;
 		}
-		if (e.Key == "ArrowRight")
-		{
-			_gameManager.PlayerModel.Velocity = Math.Min(_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity +1);
-		}
-		if (e.Key == "ArrowDown" || e.Key == "ArrowUp" )
+	}
+
+	void HandleTouchStart(TouchEventArgs e) 
+	{
+		if(e.Touches.Length > 1)
 		{
 			_gameManager.PlayerModel.Velocity = 0;
+			return;
 		}
+		var touch = e.Touches.FirstOrDefault();
+		if (touch is null) 
+		{
+			return;
+		}
+
+		if (touch.ScreenX > 300)
+		{
+			_gameManager.PlayerModel.Velocity = Math.Min(_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity + 1);
+			return;
+		}
+		_gameManager.PlayerModel.Velocity = Math.Max(-_gameManager.PlayerModel.MaxVelocity, _gameManager.PlayerModel.Velocity - 1);
 
 	}
 }
